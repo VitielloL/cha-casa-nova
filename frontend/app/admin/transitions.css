@@ -1,0 +1,14 @@
+/* Prevenção de piscada durante navegação */
+.admin-layout {
+  /* Força hardware acceleration para evitar flicker */
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* Garantir que o conteúdo seja renderizado suavemente */
+.admin-layout * {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

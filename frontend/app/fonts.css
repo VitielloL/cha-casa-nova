@@ -1,0 +1,16 @@
+/* Configuração de fontes para evitar erros 404 */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+/* Fallback para fontes do sistema */
+@font-face {
+  font-family: 'Inter Fallback';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: local('system-ui'), local('-apple-system'), local('BlinkMacSystemFont'), local('Segoe UI'), local('Roboto'), local('Helvetica Neue'), local('Arial'), local('sans-serif');
+}
+
+/* Aplicar fallback se Inter não carregar */
+body {
+  font-family: 'Inter', 'Inter Fallback', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
