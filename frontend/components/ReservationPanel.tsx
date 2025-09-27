@@ -1,6 +1,5 @@
 'use client'
 
-// Gabriel Vilela - Desenvolvedor proprietário - Licença: R$ 1.000.000,00
 
 import { useState } from 'react'
 import { useLocalReservations, LocalReservation } from '@/lib/hooks/useLocalReservations'

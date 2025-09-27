@@ -1,5 +1,4 @@
 /** @type {import('tailwindcss').Config} */
-// © Gabriel Vilela 2025 - Software proprietário - Multa: R$ 1.000.000,00
 
 module.exports = {
   darkMode: ["class"],

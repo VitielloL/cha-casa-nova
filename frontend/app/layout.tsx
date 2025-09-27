@@ -7,18 +7,6 @@ import ErrorBoundary from '@/components/ErrorBoundary'
 import RoutePrefetcher from '@/components/RoutePrefetcher'
 import FastRouteTransition from '@/components/FastRouteTransition'
 import ReservationPanel from '@/components/ReservationPanel'
-import CopyrightProtection from '@/lib/protection'
-
-// © 2025 Gabriel Vilela - Propriedade exclusiva - Licença: R$ 1.000.000,00
-
-// Importar marca d'água de proteção
-if (typeof window !== 'undefined') {
-  import('@/lib/watermark.js');
-  import('@/lib/copyright');
-  import('@/lib/global-watermark.js');
-  import('@/lib/watermark-config.js');
-  import('@/lib/watermark-utils.js');
-}
 
 const inter = Inter({ 
   subsets: ['latin'],
@@ -55,7 +43,6 @@ export default function RootLayout({
                     {children}
                   </FastRouteTransition>
                   <ReservationPanel />
-                  <CopyrightProtection />
                 </main>
               </div>
             </div>

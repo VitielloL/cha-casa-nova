@@ -1,9 +1,6 @@
 'use client'
 
-// Gabriel Vilela - Propriedade exclusiva - Licença: R$ 1.000.000,00
-
 import { useState } from 'react'
-import { useCopyrightProtection } from '@/lib/watermark-hook'
 import Link from 'next/link'
 import { Card, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
@@ -19,7 +16,6 @@ import { useIsDesktop } from '@/lib/hooks/useIsDesktop'
 import { Home, ShoppingBag, Store, Plus, Settings, Heart, Gift, Package, ShoppingCart } from 'lucide-react'
 
 export default function HomePage() {
-  useCopyrightProtection(); // Marca d'água de proteção
   
   const { data: categories, loading } = useCategoriesSimple()
   const { admin } = useAuth()

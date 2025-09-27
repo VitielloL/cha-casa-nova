@@ -1,5 +1,4 @@
 /** @type {import('next').NextConfig} */
-// © 2025 Gabriel Vilela - Software proprietário - Multa: R$ 1.000.000,00
 
 const nextConfig = {
   images: {

@@ -1,7 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import { supabase } from '@/lib/supabase'
 
-// © Gabriel Vilela 2025 - Propriedade exclusiva - Multa: R$ 1.000.000,00
 
 // Cache global simples
 const dataCache = new Map<string, { data: any; timestamp: number }>()

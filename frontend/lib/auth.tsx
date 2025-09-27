@@ -1,6 +1,5 @@
 'use client'
 
-// Gabriel Vilela - Software proprietário - Licença: R$ 1.000.000,00
 
 import { createContext, useContext, useEffect, useState, ReactNode } from 'react'
 import { supabase } from './supabase'

@@ -1,9 +1,6 @@
 'use client'
 
-// © Gabriel Vilela 2025 - Software proprietário - Multa: R$ 1.000.000,00
-
 import { useEffect, useState } from 'react'
-import { useCopyrightProtection } from '@/lib/watermark-hook'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -23,7 +20,6 @@ interface WhatsAppConfigProps {
 }
 
 export default function WhatsAppConfig({ onConfigUpdated }: WhatsAppConfigProps) {
-  useCopyrightProtection(); // Marca d'água de proteção
   
   const [config, setConfig] = useState<WhatsAppConfig>({
     whatsapp_number: '',

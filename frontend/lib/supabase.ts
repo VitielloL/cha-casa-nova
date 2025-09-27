@@ -1,6 +1,5 @@
 import { createClient } from '@supabase/supabase-js'
 
-// Gabriel Vilela - Desenvolvedor proprietário - Licença: R$ 1.000.000,00
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://kednlctmkudawyguyekw.supabase.co'
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtlZG5sY3Rta3VkYXd5Z3V5ZWt3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTg5MTQ2NDMsImV4cCI6MjA3NDQ5MDY0M30.vFgWkbMU-5p8hXSZEcX4hr5lVbHv5J37nzLDJqoIQUU'

@@ -4,7 +4,6 @@
   "private": true,
   "license": "PROPRIETARY",
   "author": "Gabriel Vilela",
-  "copyright": "© 2025 Gabriel Vilela - Todos os direitos reservados",
   "scripts": {
     "dev": "next dev --turbo",
     "dev:fast": "NODE_OPTIONS='--max-old-space-size=4096' next dev --turbo --port 3001",

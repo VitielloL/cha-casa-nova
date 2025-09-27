@@ -1,6 +1,5 @@
 'use client'
 
-// © Gabriel Vilela 2025 - Propriedade exclusiva - Multa: R$ 1.000.000,00
 
 import { createContext, useContext, useState, useEffect, useCallback, ReactNode } from 'react'
 import { supabase, Product, Category } from '@/lib/supabase'
