@@ -10,9 +10,9 @@ import { supabase } from '@/lib/supabase'
 import { 
   validateAndFormatWhatsAppNumber, 
   formatPhoneNumberForDisplay, 
-  isValidWhatsAppNumber,
-  WhatsAppConfig 
+  isValidWhatsAppNumber
 } from '@/lib/whatsappUtils'
+import type { WhatsAppConfig } from '@/lib/whatsappUtils'
 import { MessageCircle, Phone, Settings, CheckCircle, AlertCircle } from 'lucide-react'
 
 interface WhatsAppConfigProps {

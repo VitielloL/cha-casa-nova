@@ -12,7 +12,8 @@ export const APP_CONFIG = {
 // Função para buscar configurações do banco
 export async function getAppConfig() {
   try {
-    const { data, error } = await import('@/lib/supabase').then(m => m.supabase)
+    const { supabase } = await import('@/lib/supabase')
+    const { data, error } = await supabase
       .from('app_config')
       .select('key, value')
 

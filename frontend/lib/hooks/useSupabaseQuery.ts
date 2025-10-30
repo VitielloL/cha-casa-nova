@@ -68,10 +68,13 @@ export function useSupabaseQuery<T>(
 // Hook específico para categorias
 export function useCategories() {
   return useSupabaseQuery(
-    () => supabase
-      .from('categories')
-      .select('*')
-      .order('name'),
+    async () => {
+      const { data, error } = await supabase
+        .from('categories')
+        .select('*')
+        .order('name')
+      return { data, error }
+    },
     [],
     { enabled: true, refetchOnMount: false }
   )
@@ -80,14 +83,17 @@ export function useCategories() {
 // Hook específico para produtos de uma categoria
 export function useCategoryProducts(categoryId: string) {
   return useSupabaseQuery(
-    () => supabase
-      .from('products')
-      .select(`
-        *,
-        purchase_methods:product_purchase_methods(*)
-      `)
-      .eq('category_id', categoryId)
-      .order('name'),
+    async () => {
+      const { data, error } = await supabase
+        .from('products')
+        .select(`
+          *,
+          purchase_methods:product_purchase_methods(*)
+        `)
+        .eq('category_id', categoryId)
+        .order('name')
+      return { data, error }
+    },
     [categoryId],
     { enabled: !!categoryId }
   )
@@ -96,11 +102,14 @@ export function useCategoryProducts(categoryId: string) {
 // Hook específico para itens surpresa
 export function useSurpriseItems() {
   return useSupabaseQuery(
-    () => supabase
-      .from('surprise_items')
-      .select('*')
-      .eq('is_visible', true)
-      .order('created_at', { ascending: false }),
+    async () => {
+      const { data, error } = await supabase
+        .from('surprise_items')
+        .select('*')
+        .eq('is_visible', true)
+        .order('created_at', { ascending: false })
+      return { data, error }
+    },
     []
   )
 }

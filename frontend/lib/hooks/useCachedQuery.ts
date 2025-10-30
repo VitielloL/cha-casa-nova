@@ -152,7 +152,8 @@ export function useCachedProgress() {
             reserved: adicionalReserved,
             percentage: adicionalItems.length > 0 ? Math.round((adicionalReserved / adicionalItems.length) * 100) : 0
           }
-        }
+        },
+        error: null
       }
     },
     { ttl: 2 * 60 * 1000 } // 2 minutos

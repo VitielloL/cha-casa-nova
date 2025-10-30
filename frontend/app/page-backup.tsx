@@ -7,7 +7,6 @@ import { useCategoriesSimple } from '@/lib/hooks/useSimpleQuery'
 import ProgressBars from '@/components/ProgressBars'
 import DeliveryAddress from '@/components/DeliveryAddress'
 import StableLoading from '@/components/StableLoading'
-import DebugSupabase from '@/components/DebugSupabase'
 import { useAuth } from '@/lib/auth'
 import { 
   Home, 

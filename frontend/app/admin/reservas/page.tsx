@@ -310,7 +310,7 @@ function AdminReservasContent() {
                                             <html>
                                               <head><title>Foto Fofa - ${product.name}</title></head>
                                               <body style="margin:0;padding:20px;background:#f3f4f6;display:flex;justify-content:center;align-items:center;min-height:100vh;">
-                                                <img src="${imageUrls[product.reservation_image_id]}" style="max-width:100%;max-height:100%;border-radius:8px;box-shadow:0 4px 6px rgba(0,0,0,0.1);" />
+                                                <img src="${imageUrls[product.reservation_image_id!]}" style="max-width:100%;max-height:100%;border-radius:8px;box-shadow:0 4px 6px rgba(0,0,0,0.1);" />
                                               </body>
                                             </html>
                                           `)

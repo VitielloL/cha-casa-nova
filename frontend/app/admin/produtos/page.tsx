@@ -117,7 +117,7 @@ function AdminProdutosContent() {
       description: product.description || '',
       category_id: product.category_id,
       item_type: product.item_type,
-      image_id: product.image_id
+      image_id: product.image_id ?? null
     })
     setShowForm(true)
   }
@@ -141,7 +141,7 @@ function AdminProdutosContent() {
     }
   }
 
-  const updateProductStatus = async (productId: string, newStatus: string) => {
+  const updateProductStatus = async (productId: string, newStatus: 'available' | 'reserved' | 'received' | 'cancelled') => {
     try {
       setUpdating(prev => new Set(prev).add(productId))
       

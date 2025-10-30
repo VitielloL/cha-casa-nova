@@ -42,7 +42,7 @@ export default function CategoryModal({ category, isOpen, onClose }: CategoryMod
 
   const handleWhatsApp = (product: any) => {
     const productName = encodeURIComponent(product.name)
-    const whatsappNumber = APP_CONFIG.WHATSAPP_NUMBER
+    const whatsappNumber = APP_CONFIG.whatsappNumber
     const message = `Oi, eu to no produto ${productName} e queria tirar uma dúvida`
     const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${message}`
     window.open(whatsappUrl, '_blank')
@@ -130,7 +130,8 @@ export default function CategoryModal({ category, isOpen, onClose }: CategoryMod
 
                         {/* Métodos de compra */}
                         <ProductPurchaseMethods 
-                          product={product} 
+                          purchaseMethods={product.purchase_methods || []}
+                          productName={product.name}
                           className="mb-4"
                         />
 

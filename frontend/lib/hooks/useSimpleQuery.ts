@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
-import { supabase } from '@/lib/supabase'
+import { supabase, Category } from '@/lib/supabase'
 
 export function useSimpleQuery<T>(
   queryFn: () => Promise<{ data: T | null; error: any }>
@@ -54,10 +54,13 @@ export function useSimpleQuery<T>(
 
 // Hook específico para categorias
 export function useCategoriesSimple() {
-  return useSimpleQuery(
-    () => supabase
-      .from('categories')
-      .select('*')
-      .order('name')
+  return useSimpleQuery<Category[]>(
+    async () => {
+      const { data, error } = await supabase
+        .from('categories')
+        .select('*')
+        .order('name')
+      return { data, error }
+    }
   )
 }

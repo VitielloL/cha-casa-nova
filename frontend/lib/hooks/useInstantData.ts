@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
-import { supabase } from '@/lib/supabase'
+import { supabase, DeliveryAddress, Category } from '@/lib/supabase'
 
 
 // Cache global simples
@@ -74,9 +74,12 @@ export function useInstantData<T>(
 
 // Hook específico para categorias instantâneas
 export function useInstantCategories() {
-  return useInstantData(
+  return useInstantData<Category[]>(
     'categories',
-    () => supabase.from('categories').select('*').order('name'),
+    async () => {
+      const { data, error } = await supabase.from('categories').select('*').order('name')
+      return { data, error }
+    },
     [] // Sem dados mock
   )
 }
@@ -123,25 +126,28 @@ export function useInstantProgress() {
               reserved: adicionalReserved,
               percentage: adicionalItems.length > 0 ? Math.round((adicionalReserved / adicionalItems.length) * 100) : 0
             }
-          }
+          },
+          error: null
         }
       } catch (error) {
         throw error
       }
     },
-    { principal: { total: 0, reserved: 0, percentage: 0 }, adicional: { total: 0, reserved: 0, percentage: 0 } }, // Sem dados mock
-    { delayMs: 100 }
+    { principal: { total: 0, reserved: 0, percentage: 0 }, adicional: { total: 0, reserved: 0, percentage: 0 } } // Sem dados mock
   )
 }
 
 // Hook específico para endereço instantâneo
 export function useInstantDeliveryAddress() {
-  return useInstantData(
+  return useInstantData<DeliveryAddress[]>(
     'delivery_address',
-    () => supabase
-      .from('delivery_address')
-      .select('*')
-      .order('created_at'),
+    async () => {
+      const { data, error } = await supabase
+        .from('delivery_address')
+        .select('*')
+        .order('created_at')
+      return { data, error }
+    },
     [] // Sem dados mock
   )
 }

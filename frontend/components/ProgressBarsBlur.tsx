@@ -29,15 +29,15 @@ export default function ProgressBarsBlur() {
           <div className="flex items-center justify-between mb-2">
             <h3 className="font-semibold text-gray-900">Itens Principais</h3>
             <span className="text-sm text-gray-600">
-              {progressData.principal.reserved}/{progressData.principal.total}
+              {(progressData?.principal.reserved ?? 0)}/{(progressData?.principal.total ?? 0)}
             </span>
           </div>
           <Progress 
-            value={progressData.principal.percentage} 
+            value={progressData?.principal.percentage ?? 0} 
             className="h-2"
           />
           <p className="text-xs text-gray-500 mt-1">
-            {progressData.principal.percentage}% reservados
+            {(progressData?.principal.percentage ?? 0)}% reservados
           </p>
         </CardContent>
       </Card>
@@ -48,15 +48,15 @@ export default function ProgressBarsBlur() {
           <div className="flex items-center justify-between mb-2">
             <h3 className="font-semibold text-gray-900">Itens Adicionais</h3>
             <span className="text-sm text-gray-600">
-              {progressData.adicional.reserved}/{progressData.adicional.total}
+              {(progressData?.adicional.reserved ?? 0)}/{(progressData?.adicional.total ?? 0)}
             </span>
           </div>
           <Progress 
-            value={progressData.adicional.percentage} 
+            value={progressData?.adicional.percentage ?? 0} 
             className="h-2"
           />
           <p className="text-xs text-gray-500 mt-1">
-            {progressData.adicional.percentage}% reservados
+            {(progressData?.adicional.percentage ?? 0)}% reservados
           </p>
         </CardContent>
       </Card>

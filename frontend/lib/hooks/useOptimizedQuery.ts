@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback, useRef } from 'react'
-import { supabase, Category, ProgressData, DeliveryAddress } from '@/lib/supabase'
-import { SimpleCache } from '@/lib/cache'
+import { supabase } from '@/lib/supabase'
+import { cache } from '@/lib/cache'
 
 interface UseOptimizedQueryOptions {
   enabled?: boolean
@@ -9,7 +9,7 @@ interface UseOptimizedQueryOptions {
   cacheTTL?: number // Time to live in milliseconds
 }
 
-const cache = new SimpleCache()
+// usando instância de cache compartilhada
 
 export function useOptimizedQuery<T>(
   queryFn: () => Promise<{ data: T | null; error: any }>,
@@ -37,18 +37,16 @@ export function useOptimizedQuery<T>(
     try {
       const cachedData = cache.get(cacheKey)
       if (cachedData) {
-        setData(cachedData)
+        setData(cachedData as T)
         setLoading(false)
-        // Fetch in background to update cache if stale
-        if (cache.isStale(cacheKey)) {
-          queryFn().then(result => {
-            if (!isMountedRef.current) return
-            if (!result.error && result.data) {
-              cache.set(cacheKey, result.data, cacheTTL)
-              setData(result.data)
-            }
-          })
-        }
+        // Fetch in background to update cache
+        queryFn().then(result => {
+          if (!isMountedRef.current) return
+          if (!result.error && result.data) {
+            cache.set(cacheKey, result.data, cacheTTL)
+            setData(result.data)
+          }
+        })
         return
       }
 
@@ -96,10 +94,13 @@ export function useOptimizedQuery<T>(
 // Hook específico para categorias
 export function useOptimizedCategories() {
   return useOptimizedQuery(
-    () => supabase
-      .from('categories')
-      .select('*')
-      .order('name'),
+    async () => {
+      const { data, error } = await supabase
+        .from('categories')
+        .select('*')
+        .order('name')
+      return { data, error }
+    },
     [], // Sem dados mock
     { cacheKey: 'categories', cacheTTL: 10 * 60 * 1000 } // Cache por 10 minutos
   )
@@ -108,10 +109,13 @@ export function useOptimizedCategories() {
 // Hook específico para endereço de entrega
 export function useOptimizedDeliveryAddress() {
   return useOptimizedQuery(
-    () => supabase
-      .from('delivery_address')
-      .select('*')
-      .order('created_at'),
+    async () => {
+      const { data, error } = await supabase
+        .from('delivery_address')
+        .select('*')
+        .order('created_at')
+      return { data, error }
+    },
     [], // Sem dados mock
     { cacheKey: 'delivery_address', cacheTTL: 15 * 60 * 1000 } // Cache por 15 minutos
   )
@@ -158,7 +162,8 @@ export function useOptimizedProgress() {
               reserved: adicionalReserved,
               percentage: adicionalItems.length > 0 ? Math.round((adicionalReserved / adicionalItems.length) * 100) : 0
             }
-          }
+          },
+          error: null
         }
       } catch (error) {
         throw error

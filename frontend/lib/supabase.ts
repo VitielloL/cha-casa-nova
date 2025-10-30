@@ -14,6 +14,7 @@ export const supabase = createClient(supabaseUrl, supabaseAnonKey)
 export interface Category {
   id: string
   name: string
+  description?: string
   created_at: string
 }
 
@@ -30,20 +31,20 @@ export interface Product {
   category_id: string
   name: string
   description?: string
-  image_id?: string
+  image_id?: string | null
   image_url?: string // Mantido para compatibilidade
   store_link?: string
   store_address?: string
   reserved: boolean
-  reserved_by?: string
-  reserved_contact?: string
+  reserved_by?: string | null
+  reserved_contact?: string | null
   is_anonymous: boolean
   reservation_status: 'available' | 'reserved' | 'received' | 'cancelled'
   item_type: 'principal' | 'adicional'
-  received_at?: string
-  cancelled_at?: string
+  received_at?: string | null
+  cancelled_at?: string | null
   reservation_message?: string
-  reservation_image_id?: string
+  reservation_image_id?: string | null
   created_at: string
   category?: Category
   purchase_methods?: ProductPurchaseMethod[]

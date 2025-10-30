@@ -57,8 +57,8 @@ export default function HomePage() {
             <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-pink-500 mx-auto mb-4"></div>
             <p className="text-gray-600">Carregando categorias...</p>
           </div>
-        ) : categories?.length > 0 ? (
-          categories.map((category) => (
+        ) : (categories?.length ?? 0) > 0 ? (
+          categories!.map((category) => (
           <div key={category.id}>
             {isDesktop ? (
               <Card 

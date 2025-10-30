@@ -90,7 +90,8 @@ export default function ReservationImageDebug({
               onImageLoaded?.(url)
             } catch (blobError) {
               console.error('❌ DEBUG - Erro com URL.createObjectURL:', blobError)
-              throw new Error('Falha ao converter imagem: ' + blobError.message)
+              const message = blobError instanceof Error ? blobError.message : String(blobError)
+              throw new Error('Falha ao converter imagem: ' + message)
             }
           }
         } else {

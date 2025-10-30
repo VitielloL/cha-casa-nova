@@ -3,7 +3,8 @@
 import { useEffect, useState } from 'react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
-import { supabase, DeliveryAddress } from '@/lib/supabase'
+import { supabase } from '@/lib/supabase'
+import type { DeliveryAddress } from '@/lib/supabase'
 import { MapPin, Phone, User, Copy, Check } from 'lucide-react'
 
 export default function DeliveryAddress() {

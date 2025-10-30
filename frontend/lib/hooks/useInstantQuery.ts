@@ -65,7 +65,10 @@ export function useInstantCategories() {
   ]
 
   return useInstantQuery(
-    () => supabase.from('categories').select('*').order('name'),
+    async () => {
+      const { data, error } = await supabase.from('categories').select('*').order('name')
+      return { data, error }
+    },
     mockCategories
   )
 }
@@ -94,15 +97,17 @@ export function useInstantCategoryProducts(categoryId: string) {
   ]
 
   return useInstantQuery(
-    () => supabase
-      .from('products')
-      .select(`
-        *,
-        purchase_methods:product_purchase_methods(*)
-      `)
-      .eq('category_id', categoryId)
-      .order('name'),
-    mockProducts,
-    { enabled: !!categoryId }
+    async () => {
+      const { data, error } = await supabase
+        .from('products')
+        .select(`
+          *,
+          purchase_methods:product_purchase_methods(*)
+        `)
+        .eq('category_id', categoryId)
+        .order('name')
+      return { data, error }
+    },
+    mockProducts
   )
 }

@@ -6,12 +6,14 @@ import { UserX, Search, Eye, EyeOff, AlertTriangle } from 'lucide-react'
 import { useState } from 'react'
 
 interface DetectiveCardProps {
-  productName: string
+  productName?: string
+  title?: string
+  message?: string
   onReveal?: () => void
   onInvestigate?: () => void
 }
 
-export default function DetectiveCard({ productName, onReveal, onInvestigate }: DetectiveCardProps) {
+export default function DetectiveCard({ productName, title, message, onReveal, onInvestigate }: DetectiveCardProps) {
   const [isRevealed, setIsRevealed] = useState(false)
   const [investigationLevel, setInvestigationLevel] = useState(0)
 
@@ -54,8 +56,10 @@ export default function DetectiveCard({ productName, onReveal, onInvestigate }: 
             <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-2">
               <UserX className="w-8 h-8 text-purple-600" />
             </div>
-            <h3 className="font-bold text-purple-900 text-lg">🕵️‍♂️ Caso Misterioso</h3>
-            <p className="text-sm text-purple-700">Produto: {productName}</p>
+            <h3 className="font-bold text-purple-900 text-lg">{title || '🕵️‍♂️ Caso Misterioso'}</h3>
+            {productName && (
+              <p className="text-sm text-purple-700">Produto: {productName}</p>
+            )}
           </div>
 
           {/* Status da investigação */}
@@ -117,12 +121,18 @@ export default function DetectiveCard({ productName, onReveal, onInvestigate }: 
 
           {/* Dicas do detetive */}
           <div className="mt-4 p-3 bg-yellow-50 rounded-lg border border-yellow-200">
-            <p className="text-xs text-yellow-800">
-              <strong>💡 Dica do Detetive:</strong> {investigationLevel === 0 && "Alguém muito esperto reservou este produto..."}
-              {investigationLevel === 1 && "A pessoa gosta de mistérios e surpresas..."}
-              {investigationLevel === 2 && "Definitivamente alguém próximo, mas quem será?"}
-              {investigationLevel === 3 && "Mesmo com toda investigação, a identidade permanece um enigma!"}
-            </p>
+              <p className="text-xs text-yellow-800">
+                {message ? (
+                  <>{message}</>
+                ) : (
+                  <>
+                    <strong>💡 Dica do Detetive:</strong> {investigationLevel === 0 && "Alguém muito esperto reservou este produto..."}
+                    {investigationLevel === 1 && "A pessoa gosta de mistérios e surpresas..."}
+                    {investigationLevel === 2 && "Definitivamente alguém próximo, mas quem será?"}
+                    {investigationLevel === 3 && "Mesmo com toda investigação, a identidade permanece um enigma!"}
+                  </>
+                )}
+              </p>
           </div>
         </div>
       </CardContent>

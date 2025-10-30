@@ -5,7 +5,7 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { validateAndFormatWhatsAppNumber, isValidWhatsAppNumber, formatPhoneNumberForDisplay } from '@/lib/whatsappUtils'
-import { AlertCircle, Phone, CheckCircle, Globe } from 'lucide-react'
+import { AlertCircle, Phone, CheckCircle, Globe, Mail } from 'lucide-react'
 
 interface ContactInputProps {
   value: string

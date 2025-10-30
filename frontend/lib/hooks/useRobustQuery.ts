@@ -86,7 +86,10 @@ export function useRobustQuery<T>(
 // Hook específico para categorias com fallback robusto
 export function useRobustCategories() {
   return useRobustQuery(
-    () => supabase.from('categories').select('*').order('name'),
+    async () => {
+      const { data, error } = await supabase.from('categories').select('*').order('name')
+      return { data, error }
+    },
     [], // Sem dados mock
     { retryOnError: true, maxRetries: 3 }
   )
@@ -95,10 +98,13 @@ export function useRobustCategories() {
 // Hook específico para endereços de entrega
 export function useRobustDeliveryAddress() {
   return useRobustQuery(
-    () => supabase
-      .from('delivery_address')
-      .select('*')
-      .order('created_at'),
+    async () => {
+      const { data, error } = await supabase
+        .from('delivery_address')
+        .select('*')
+        .order('created_at')
+      return { data, error }
+    },
     [], // Sem dados mock
     { retryOnError: true, maxRetries: 2 }
   )
@@ -107,14 +113,17 @@ export function useRobustDeliveryAddress() {
 // Hook específico para produtos de uma categoria
 export function useRobustCategoryProducts(categoryId: string) {
   return useRobustQuery(
-    () => supabase
-      .from('products')
-      .select(`
-        *,
-        purchase_methods:product_purchase_methods(*)
-      `)
-      .eq('category_id', categoryId)
-      .order('name'),
+    async () => {
+      const { data, error } = await supabase
+        .from('products')
+        .select(`
+          *,
+          purchase_methods:product_purchase_methods(*)
+        `)
+        .eq('category_id', categoryId)
+        .order('name')
+      return { data, error }
+    },
     [], // Sem dados mock
     { 
       enabled: !!categoryId,
@@ -165,7 +174,8 @@ export function useRobustProgress() {
               reserved: adicionalReserved,
               percentage: adicionalItems.length > 0 ? Math.round((adicionalReserved / adicionalItems.length) * 100) : 0
             }
-          }
+          },
+          error: null
         }
       } catch (error) {
         throw error
