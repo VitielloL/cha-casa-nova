@@ -31,24 +31,60 @@ export default function ImageDisplay({
 
     const fetchImage = async () => {
       try {
+        console.log('[ImageDisplay] 🔍 INICIANDO busca de imagem', { imageId })
         const imageUrl = await imageCache.getImage(imageId, async () => {
+          console.log('[ImageDisplay] 📡 Fazendo query no Supabase', { imageId })
           const { data, error } = await supabase
             .from('images')
             .select('image_data, mime_type')
             .eq('id', imageId)
             .single()
 
-          if (error) throw error
+          if (error) {
+            console.error('[ImageDisplay] ❌ Erro no Supabase', error)
+            throw error
+          }
 
-          if (data?.image_data) {
-            return bytesToBase64(data.image_data, data.mime_type)
+          const imageData = (data as any)?.image_data
+          console.log('[ImageDisplay] ✅ Dados recebidos do Supabase', {
+            hasData: !!data,
+            hasImage: !!imageData,
+            mime: data?.mime_type,
+            imageType: imageData ? typeof imageData : null,
+            isUint8Array: imageData instanceof Uint8Array,
+            isArray: Array.isArray(imageData),
+            isString: typeof imageData === 'string',
+            isObject: typeof imageData === 'object' && imageData !== null,
+            constructor: imageData?.constructor?.name,
+            stringPreview: typeof imageData === 'string' ? imageData.substring(0, 200) : null,
+            objectKeys: typeof imageData === 'object' && imageData !== null ? Object.keys(imageData).slice(0, 10) : null,
+            stringStartsWith: typeof imageData === 'string' ? {
+              startsWithData: imageData.startsWith('data:'),
+              startsWithBrace: imageData.startsWith('{'),
+              startsWithQuote: imageData.startsWith('"'),
+              startsWithHex: imageData.startsWith('\\x'),
+            } : null,
+          })
+
+          if (imageData) {
+            console.log('[ImageDisplay] 🔄 Chamando bytesToBase64...', { 
+              imageDataType: typeof imageData,
+              mimeType: data.mime_type 
+            })
+            const url = bytesToBase64(imageData, data.mime_type)
+            console.log('[ImageDisplay] ✅ Data URL criada', { 
+              length: url?.length,
+              startsWith: url?.substring(0, 50)
+            })
+            return url
           }
           throw new Error('Imagem não encontrada')
         })
 
+        console.log('[ImageDisplay] ✅ Imagem carregada com sucesso', { imageUrl: imageUrl?.substring(0, 50) })
         setImageUrl(imageUrl)
       } catch (err) {
-        console.error('Erro ao carregar imagem:', err)
+        console.error('[ImageDisplay] ❌ Erro ao carregar imagem:', err)
         setError(true)
       } finally {
         setLoading(false)

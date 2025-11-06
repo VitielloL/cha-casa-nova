@@ -53,11 +53,20 @@ function AdminDonosContent() {
     e.preventDefault()
     
     try {
+      // Preparar dados para salvar (converter strings vazias em null)
+      const dataToSave = {
+        name: formData.name,
+        bio: formData.bio || null,
+        relationship: formData.relationship || null,
+        photo_id: formData.photo_id || null,
+        order_index: formData.order_index || 0
+      }
+
       if (editingOwner) {
         // Atualizar
         const { error } = await supabase
           .from('party_owners')
-          .update(formData)
+          .update(dataToSave)
           .eq('id', editingOwner.id)
 
         if (error) throw error
@@ -65,7 +74,7 @@ function AdminDonosContent() {
         // Criar
         const { error } = await supabase
           .from('party_owners')
-          .insert([formData])
+          .insert([dataToSave])
 
         if (error) throw error
       }

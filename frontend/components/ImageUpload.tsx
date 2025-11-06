@@ -73,6 +73,7 @@ export default function ImageUpload({ onImageUploaded, currentImageUrl, classNam
       if (error) throw error
 
       // Notificar componente pai
+      console.debug('[ImageUpload] uploaded image id', data.id)
       onImageUploaded(data.id, optimizedImage.data)
 
     } catch (err) {
@@ -116,6 +117,7 @@ export default function ImageUpload({ onImageUploaded, currentImageUrl, classNam
                 className="w-full h-48 object-cover rounded-lg"
               />
               <Button
+                type="button"
                 variant="destructive"
                 size="sm"
                 onClick={handleRemoveImage}
@@ -144,6 +146,7 @@ export default function ImageUpload({ onImageUploaded, currentImageUrl, classNam
                 Clique para selecionar uma imagem
               </p>
               <Button
+                type="button"
                 onClick={handleClickUpload}
                 disabled={uploading}
                 className="mobile-button w-full"
