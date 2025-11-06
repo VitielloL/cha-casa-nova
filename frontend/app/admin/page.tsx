@@ -47,8 +47,6 @@ function AdminPageContent() {
     try {
       setUpdating(prev => new Set(prev).add(productId))
       
-      console.log('🔄 PAINEL ADMIN - Atualizando produto:', productId, 'para status:', newStatus)
-      
       // Preparar dados para atualização (usando a mesma lógica da página de produtos)
       const updateData: any = {
         reservation_status: newStatus,
@@ -59,18 +57,12 @@ function AdminPageContent() {
         reserved: newStatus !== 'available'
       }
 
-      console.log('📝 PAINEL ADMIN - Dados para atualização:', updateData)
-
       // Atualizar no banco de dados
       const { data, error } = await supabase
         .from('products')
         .update(updateData)
         .eq('id', productId)
         .select()
-
-      console.log('📊 PAINEL ADMIN - Resultado:', error ? 'ERRO' : 'SUCESSO')
-      console.log('❌ Erro:', error)
-      console.log('✅ Data:', data)
 
       if (error) {
         console.error('❌ PAINEL ADMIN - Erro:', error)
@@ -86,8 +78,6 @@ function AdminPageContent() {
 
       // Atualizar contexto global
       const updatedProductFromDB = data[0]
-      console.log('✅ PAINEL ADMIN - Produto atualizado no banco:', updatedProductFromDB)
-      console.log('✅ PAINEL ADMIN - Status do produto atualizado:', updatedProductFromDB.reservation_status)
       
       updateProduct(updatedProductFromDB)
 
@@ -128,10 +118,7 @@ function AdminPageContent() {
     if (!confirm('Tem certeza que deseja APAGAR este produto? Esta ação não pode ser desfeita.')) return
 
     try {
-      console.log('🗑️ PAINEL ADMIN - Iniciando EXCLUSÃO do produto:', productId)
-      
       // Primeiro, verificar se o produto existe
-      console.log('🔍 PAINEL ADMIN - Verificando se o produto existe...')
       const { data: productData, error: productCheckError } = await supabase
         .from('products')
         .select('id, name, reservation_status')
@@ -143,10 +130,7 @@ function AdminPageContent() {
         throw new Error('Produto não encontrado')
       }
 
-      console.log('✅ PAINEL ADMIN - Produto encontrado:', productData)
-      
       // Verificar métodos de compra relacionados
-      console.log('🔍 PAINEL ADMIN - Verificando métodos de compra relacionados...')
       const { data: methodsData, error: methodsCheckError } = await supabase
         .from('product_purchase_methods')
         .select('id, name')
@@ -160,7 +144,6 @@ function AdminPageContent() {
 
       // Deletar métodos de compra relacionados (se houver)
       if (methodsData && methodsData.length > 0) {
-        console.log('🗑️ PAINEL ADMIN - Deletando métodos de compra relacionados...')
         const { error: methodsError } = await supabase
           .from('product_purchase_methods')
           .delete()
@@ -177,7 +160,6 @@ function AdminPageContent() {
       }
       
       // Verificar imagens de reserva relacionadas
-      console.log('🔍 PAINEL ADMIN - Verificando imagens de reserva relacionadas...')
       const { data: imagesData, error: imagesCheckError } = await supabase
         .from('reservation_images')
         .select('id, filename')
@@ -191,7 +173,6 @@ function AdminPageContent() {
 
       // Deletar imagens de reserva relacionadas (se houver)
       if (imagesData && imagesData.length > 0) {
-        console.log('🗑️ PAINEL ADMIN - Deletando imagens de reserva relacionadas...')
         const { error: imagesError } = await supabase
           .from('reservation_images')
           .delete()
@@ -208,7 +189,6 @@ function AdminPageContent() {
       }
       
       // Finalmente, tentar deletar o produto
-      console.log('🗑️ PAINEL ADMIN - Tentando DELETAR produto...')
       const { error: deleteError } = await supabase
         .from('products')
         .delete()
@@ -228,12 +208,9 @@ function AdminPageContent() {
         throw new Error('Erro ao deletar produto: ' + deleteError.message)
       }
 
-      console.log('✅ PAINEL ADMIN - Produto DELETADO com sucesso!')
-      
       // Atualizar contexto global
       deleteProduct(productId)
       
-      console.log('✅ PAINEL ADMIN - Produto removido do contexto local')
       alert('Produto DELETADO com sucesso!')
     } catch (error) {
       console.error('❌ PAINEL ADMIN - Erro ao deletar produto:', error)
@@ -272,22 +249,6 @@ function AdminPageContent() {
   const receivedProducts = products.filter(p => p.reservation_status === 'received')
   const cancelledProducts = products.filter(p => p.reservation_status === 'cancelled')
   const availableProducts = products.filter(p => p.reservation_status === 'available')
-  
-  // Debug logs
-  console.log('🔍 DEBUG - Total produtos:', products.length)
-  console.log('🔍 DEBUG - Produtos reservados:', reservedProducts.length)
-  console.log('🔍 DEBUG - Produtos recebidos:', receivedProducts.length)
-  console.log('🔍 DEBUG - Produtos cancelados:', cancelledProducts.length)
-  console.log('🔍 DEBUG - Produtos disponíveis:', availableProducts.length)
-  console.log('🔍 DEBUG - Status dos produtos:', products.map(p => ({ name: p.name, status: p.reservation_status, reserved: p.reserved })))
-  
-  // Debug específico para produtos recebidos
-  console.log('🔍 DEBUG - Produtos recebidos detalhado:', receivedProducts.map(p => ({ 
-    id: p.id, 
-    name: p.name, 
-    status: p.reservation_status, 
-    received_at: p.received_at 
-  })))
 
   if (loading) {
     return (

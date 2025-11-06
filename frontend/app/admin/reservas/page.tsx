@@ -239,14 +239,6 @@ function AdminReservasContent() {
                     <div className="mb-3">
                       <DetectiveCard 
                         productName={product.name}
-                        onReveal={() => {
-                          // Aqui você pode implementar lógica para revelar a identidade
-                          console.log('Tentando revelar identidade do produto:', product.name)
-                        }}
-                        onInvestigate={() => {
-                          // Aqui você pode implementar lógica de investigação
-                          console.log('Investigando produto:', product.name)
-                        }}
                       />
                     </div>
                   ) : product.reserved_by ? (

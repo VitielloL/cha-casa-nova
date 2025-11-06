@@ -32,8 +32,6 @@ export default function ReservationImageDebug({
 
     const fetchImage = async () => {
       try {
-        console.log('🔍 DEBUG - Iniciando carregamento da imagem:', imageId)
-        
         const { data, error } = await supabase
           .from('images')
           .select('image_data, mime_type, filename, size_bytes, width, height')
@@ -44,20 +42,6 @@ export default function ReservationImageDebug({
           console.error('❌ DEBUG - Erro na consulta:', error)
           throw error
         }
-
-        console.log('✅ DEBUG - Dados da imagem encontrados:', {
-          hasImageData: !!data?.image_data,
-          mimeType: data?.mime_type,
-          filename: data?.filename,
-          sizeBytes: data?.size_bytes,
-          width: data?.width,
-          height: data?.height,
-          imageDataLength: data?.image_data?.length,
-          imageDataType: typeof data?.image_data,
-          imageDataConstructor: data?.image_data?.constructor?.name,
-          isArray: Array.isArray(data?.image_data),
-          isUint8Array: data?.image_data instanceof Uint8Array
-        })
 
         setDebugInfo({
           hasImageData: !!data?.image_data,
@@ -70,12 +54,9 @@ export default function ReservationImageDebug({
         })
 
         if (data?.image_data) {
-          console.log('🔄 DEBUG - Convertendo bytes para base64...')
-          
           // Tentar método 1: bytesToBase64
           try {
             const base64Url = bytesToBase64(data.image_data, data.mime_type)
-            console.log('✅ DEBUG - Base64 gerado com sucesso, tamanho:', base64Url.length)
             setImageUrl(base64Url)
             onImageLoaded?.(base64Url)
           } catch (base64Error) {
@@ -85,7 +66,6 @@ export default function ReservationImageDebug({
             try {
               const blob = new Blob([data.image_data], { type: data.mime_type })
               const url = URL.createObjectURL(blob)
-              console.log('✅ DEBUG - URL.createObjectURL gerado com sucesso')
               setImageUrl(url)
               onImageLoaded?.(url)
             } catch (blobError) {
@@ -153,7 +133,6 @@ export default function ReservationImageDebug({
         src={imageUrl}
         alt={`Foto fofa da reserva - ${productName}`}
         className={className}
-        onLoad={() => console.log('✅ DEBUG - Imagem carregada com sucesso no DOM')}
         onError={(e) => {
           console.error('❌ DEBUG - Erro ao carregar imagem no DOM:', e)
         }}

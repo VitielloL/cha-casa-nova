@@ -47,7 +47,6 @@ export function useRobustQuery<T>(
       // Retry logic
       if (retryOnError && retryCountRef.current < maxRetries) {
         retryCountRef.current++
-        console.log(`Tentativa ${retryCountRef.current} de ${maxRetries}`)
         setTimeout(() => {
           if (isMountedRef.current) {
             fetchData(true)

@@ -274,7 +274,6 @@ export default function ReservationModal({ product, open, onOpenChange, onSucces
                       alt="Foto fofa da reserva"
                       className="w-full max-w-32 h-20 object-cover rounded border border-purple-200"
                       onError={(e) => {
-                        console.log('Erro ao carregar imagem na tela de sucesso:', imagePreview)
                         e.currentTarget.style.display = 'none'
                       }}
                     />

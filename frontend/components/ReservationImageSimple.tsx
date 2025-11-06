@@ -30,8 +30,6 @@ export default function ReservationImageSimple({
 
     const fetchImage = async () => {
       try {
-        console.log('🔍 SIMPLE DEBUG - Carregando imagem:', imageId)
-        
         const { data, error } = await supabase
           .from('images')
           .select('image_data, mime_type, filename, size_bytes')
@@ -43,20 +41,10 @@ export default function ReservationImageSimple({
           throw error
         }
 
-        console.log('✅ SIMPLE DEBUG - Dados encontrados:', {
-          hasImageData: !!data?.image_data,
-          mimeType: data?.mime_type,
-          filename: data?.filename,
-          sizeBytes: data?.size_bytes,
-          imageDataLength: data?.image_data?.length,
-          imageDataType: typeof data?.image_data
-        })
-
         if (data?.image_data) {
           // Usar o mesmo método que funciona no ReservationDetails
           const blob = new Blob([data.image_data], { type: data.mime_type })
           const url = URL.createObjectURL(blob)
-          console.log('✅ SIMPLE DEBUG - URL criada com sucesso:', url)
           setImageUrl(url)
           onImageLoaded?.(url)
         } else {
@@ -122,7 +110,6 @@ export default function ReservationImageSimple({
         src={imageUrl}
         alt={`Foto fofa da reserva - ${productName}`}
         className={className}
-        onLoad={() => console.log('✅ SIMPLE DEBUG - Imagem carregada no DOM')}
         onError={(e) => {
           console.error('❌ SIMPLE DEBUG - Erro ao carregar imagem no DOM:', e)
         }}

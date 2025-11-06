@@ -31,7 +31,6 @@ export default function CategoryPage() {
   // Sistema de eventos removido para evitar flash durante navegação
 
   const fetchCategoryAndProducts = async (categoryId: string) => {
-    console.log('🔍 FETCH DEBUG - Iniciando busca para categoria:', categoryId)
     try {
       // Buscar categoria
       const { data: categoryData, error: categoryError } = await supabase
@@ -54,8 +53,6 @@ export default function CategoryPage() {
         .order('name')
 
       if (productsError) throw productsError
-      console.log('🔍 CATEGORIA DEBUG - Produtos carregados:', productsData?.length || 0)
-      console.log('🔍 CATEGORIA DEBUG - Status dos produtos:', productsData?.map(p => ({ name: p.name, status: p.reservation_status, reserved: p.reserved })) || [])
       setProducts(productsData || [])
     } catch (error) {
       console.error('Erro ao carregar dados:', error)
@@ -86,15 +83,6 @@ export default function CategoryPage() {
 
   const renderProductStatus = (product: Product) => {
     // Debug específico para Panela de Pressão
-    if (product.name === 'Panela de Pressão') {
-      console.log('🔍 PANELA DEBUG:', {
-        name: product.name,
-        reservation_status: product.reservation_status,
-        reserved: product.reserved,
-        is_anonymous: product.is_anonymous
-      })
-    }
-
     const statusConfig = {
       available: { 
         icon: null, 

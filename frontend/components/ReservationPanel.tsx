@@ -184,7 +184,6 @@ export default function ReservationPanel() {
                               alt="Foto fofa"
                               className="w-16 h-12 object-cover rounded border border-purple-200"
                               onError={(e) => {
-                                console.log('Erro ao carregar imagem:', reservation.imagePreview)
                                 e.currentTarget.style.display = 'none'
                               }}
                             />
