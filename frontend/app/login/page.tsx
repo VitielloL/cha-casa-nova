@@ -121,7 +121,7 @@ export default function LoginPage() {
             </Button>
           </form>
 
-          {/* Credenciais padrão */}
+          {/* Credenciais padrão
           <div className="mt-6 p-4 bg-gray-50 rounded-lg">
             <h4 className="text-sm font-medium text-gray-700 mb-2">
               Credenciais padrão:
@@ -133,7 +133,7 @@ export default function LoginPage() {
             <p className="text-xs text-gray-500 mt-2">
               ⚠️ Altere essas credenciais em produção!
             </p>
-          </div>
+          </div> */}
         </CardContent>
       </Card>
     </div>
