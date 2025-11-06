@@ -17,6 +17,10 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: 'Lista de Presentes',
   description: 'Lista de presentes para os anfitriões da celebração',
+  icons: {
+    icon: { url: '/favicon.avif' },
+    apple: { url: '/favicon.avif' },
+  },
 }
 
 export const viewport: Viewport = {
