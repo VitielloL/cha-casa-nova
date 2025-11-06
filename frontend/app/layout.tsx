@@ -16,7 +16,7 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: 'Lista de Presentes',
-  description: 'Lista de presentes para os anfitriões da celebração',
+  description: 'Lista de presentes para os anfitriões da celebração. Feito com ❤️ por Vitiello e Isa. os anfitriões da celebração',
   icons: {
     icon: { url: '/favicon.avif' },
     apple: { url: '/favicon.avif' },

@@ -184,7 +184,7 @@ export default function HomePage() {
       <div className="hidden lg:block mt-16 pt-8 border-t border-gray-200">
         <div className="text-center text-gray-500">
           <p className="text-sm">
-            Lista de presentes para os anfitriões da celebração
+            Lista de presentes para os anfitriões da celebração. Feito com ❤️ por Vitiello e Isa.
           </p>
         </div>
       </div>
