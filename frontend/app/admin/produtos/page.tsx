@@ -13,6 +13,7 @@ import { supabase, Product, Category } from '@/lib/supabase'
 import ProtectedRoute from '@/components/ProtectedRoute'
 import { ArrowLeft, Plus, Edit, Trash2, Eye, EyeOff, ShoppingCart, Package, XCircle, CheckCircle, Clock } from 'lucide-react'
 import ImageDisplay from '@/components/ImageDisplay'
+import ImageUpload from '@/components/ImageUpload'
 import ResponsiveContainer from '@/components/ResponsiveContainer'
 
 function AdminProdutosContent() {
@@ -28,7 +29,8 @@ function AdminProdutosContent() {
     description: '',
     category_id: '',
     item_type: 'principal' as 'principal' | 'adicional',
-    image_id: null as string | null
+    image_id: null as string | null,
+    product_link: ''
   })
 
   useEffect(() => {
@@ -72,27 +74,111 @@ function AdminProdutosContent() {
 
     try {
       if (editingProduct) {
-        // Atualizar produto
+        // Atualizar produto (apenas colunas válidas da tabela products)
         const { error } = await supabase
           .from('products')
-          .update(formData)
+          .update({
+            name: formData.name,
+            description: formData.description || null,
+            image_id: formData.image_id || null,
+            category_id: formData.category_id,
+            item_type: formData.item_type
+          })
           .eq('id', editingProduct.id)
 
         if (error) throw error
+
+        // Atualizar ou criar link se fornecido
+        if (formData.product_link) {
+          // Verificar se já existe um link para este produto
+          const { data: existingLink } = await supabase
+            .from('product_purchase_methods')
+            .select('id')
+            .eq('product_id', editingProduct.id)
+            .eq('type', 'link')
+            .single()
+
+          if (existingLink) {
+            // Atualizar link existente
+            const { error: linkError } = await supabase
+              .from('product_purchase_methods')
+              .update({
+                content: formData.product_link,
+                is_primary: true
+              })
+              .eq('id', existingLink.id)
+            if (linkError) throw linkError
+          } else {
+            // Criar novo link
+            const { error: linkError } = await supabase
+              .from('product_purchase_methods')
+              .insert([{
+                product_id: editingProduct.id,
+                name: 'Link',
+                type: 'link',
+                content: formData.product_link,
+                description: null,
+                icon: '🔗',
+                color: 'blue',
+                is_primary: true,
+                order_index: 0,
+                is_active: true
+              }])
+            if (linkError) throw linkError
+          }
+        }
 
         setProducts(prev => prev.map(p => 
           p.id === editingProduct.id ? { ...p, ...formData } : p
         ))
       } else {
-        // Criar produto
+        // Criar produto (apenas colunas válidas da tabela products)
         const { data, error } = await supabase
           .from('products')
-          .insert([formData])
-          .select()
+          .insert([{
+            name: formData.name,
+            description: formData.description || null,
+            image_id: formData.image_id || null,
+            category_id: formData.category_id,
+            item_type: formData.item_type
+          }])
+          .select('id')
+          .single()
 
         if (error) throw error
 
-        setProducts(prev => [data[0], ...prev])
+        // Se tiver link único, salvar em product_purchase_methods
+        if (formData.product_link && data?.id) {
+          const { error: linkError } = await supabase
+            .from('product_purchase_methods')
+            .insert([{
+              product_id: data.id,
+              name: 'Link',
+              type: 'link',
+              content: formData.product_link,
+              description: null,
+              icon: '🔗',
+              color: 'blue',
+              is_primary: true,
+              order_index: 0,
+              is_active: true
+            }])
+          if (linkError) throw linkError
+        }
+
+        // Buscar produto completo para atualizar a lista
+        const { data: fullProduct } = await supabase
+          .from('products')
+          .select(`
+            *,
+            category:categories(name)
+          `)
+          .eq('id', data.id)
+          .single()
+
+        if (fullProduct) {
+          setProducts(prev => [fullProduct, ...prev])
+        }
       }
 
       setShowForm(false)
@@ -102,22 +188,41 @@ function AdminProdutosContent() {
         description: '',
         category_id: '',
         item_type: 'principal',
-        image_id: null
+        image_id: null,
+        product_link: ''
       })
+      fetchData() // Recarregar dados para garantir sincronização
     } catch (error) {
       console.error('Erro ao salvar produto:', error)
       alert('Erro ao salvar. Tente novamente.')
     }
   }
 
-  const handleEdit = (product: Product) => {
+  const handleEdit = async (product: Product) => {
     setEditingProduct(product)
+    
+    // Buscar link do produto se existir
+    let productLink = ''
+    if (product.id) {
+      const { data: linkData } = await supabase
+        .from('product_purchase_methods')
+        .select('content')
+        .eq('product_id', product.id)
+        .eq('type', 'link')
+        .single()
+      
+      if (linkData) {
+        productLink = linkData.content || ''
+      }
+    }
+    
     setFormData({
       name: product.name,
       description: product.description || '',
       category_id: product.category_id,
       item_type: product.item_type,
-      image_id: product.image_id ?? null
+      image_id: product.image_id ?? null,
+      product_link: productLink
     })
     setShowForm(true)
   }
@@ -251,7 +356,8 @@ function AdminProdutosContent() {
               description: '',
               category_id: '',
               item_type: 'principal',
-              image_id: null
+              image_id: null,
+              product_link: ''
             })
             setShowForm(true)
           }}
@@ -458,7 +564,7 @@ function AdminProdutosContent() {
 
       {/* Modal de Formulário */}
       <Dialog open={showForm} onOpenChange={setShowForm}>
-        <DialogContent className="max-w-md">
+        <DialogContent className="max-w-md max-h-[90vh] overflow-y-auto">
           <DialogHeader>
             <DialogTitle>
               {editingProduct ? 'Editar Produto' : 'Adicionar Produto'}
@@ -506,7 +612,7 @@ function AdminProdutosContent() {
             </div>
 
             <div>
-              <Label htmlFor="item_type">Tipo de Item</Label>
+              <Label htmlFor="item_type">Tipo de Item *</Label>
               <Select
                 value={formData.item_type}
                 onValueChange={(value: 'principal' | 'adicional') => setFormData(prev => ({ ...prev, item_type: value }))}
@@ -515,10 +621,39 @@ function AdminProdutosContent() {
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="principal">Principal</SelectItem>
-                  <SelectItem value="adicional">Adicional</SelectItem>
+                  <SelectItem value="principal">Principal (essencial)</SelectItem>
+                  <SelectItem value="adicional">Adicional (opcional)</SelectItem>
                 </SelectContent>
               </Select>
+              <p className="text-xs text-gray-500 mt-1">
+                Itens principais são essenciais, adicionais são extras
+              </p>
+            </div>
+
+            <div>
+              <Label>Imagem do produto</Label>
+              <ImageUpload
+                onImageUploaded={(imageId, imageUrl) => {
+                  setFormData(prev => ({ ...prev, image_id: imageId }))
+                }}
+                className="mt-1"
+              />
+              {formData.image_id && (
+                <div className="mt-2">
+                  <ImageDisplay imageId={formData.image_id} className="w-24 h-24 rounded-lg object-cover" />
+                </div>
+              )}
+            </div>
+
+            <div>
+              <Label htmlFor="product-link">Link do produto</Label>
+              <Input
+                id="product-link"
+                value={formData.product_link}
+                onChange={(e) => setFormData(prev => ({ ...prev, product_link: e.target.value }))}
+                placeholder="https://loja.com/produto"
+                className="mt-1"
+              />
             </div>
 
             <div className="flex space-x-2 pt-4">
