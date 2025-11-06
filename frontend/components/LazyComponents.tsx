@@ -7,7 +7,7 @@ import { Loader2 } from 'lucide-react'
 function FastLoader({ text = 'Carregando...' }: { text?: string }) {
   return (
     <div className="flex flex-col items-center justify-center py-8">
-      <Loader2 className="w-6 h-6 text-pink-500 animate-spin mb-2" />
+      <Loader2 className="w-6 h-6 text-blue-500 animate-spin mb-2" />
       <p className="text-sm text-gray-600">{text}</p>
     </div>
   )

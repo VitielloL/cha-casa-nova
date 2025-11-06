@@ -90,7 +90,7 @@ export default function CategoryModal({ category, isOpen, onClose }: CategoryMod
           <div className="mt-6">
             {loading ? (
               <div className="text-center py-8">
-                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-pink-500 mx-auto"></div>
+                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500 mx-auto"></div>
                 <p className="mt-4 text-gray-600">Carregando produtos...</p>
               </div>
             ) : products && products.length > 0 ? (
@@ -140,7 +140,7 @@ export default function CategoryModal({ category, isOpen, onClose }: CategoryMod
                           {product.reservation_status === 'available' && (
                             <Button
                               onClick={() => handleReserve(product)}
-                              className="w-full bg-pink-600 hover:bg-pink-700 text-white"
+                              className="w-full bg-blue-600 hover:bg-blue-700 text-white"
                             >
                               <ShoppingCart className="w-4 h-4 mr-2" />
                               Reservar

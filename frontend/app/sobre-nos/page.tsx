@@ -40,7 +40,7 @@ export default function SobreNosPage() {
     return (
       <div className="mobile-container">
         <div className="text-center py-8">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-pink-500 mx-auto"></div>
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500 mx-auto"></div>
           <p className="mt-4 text-gray-600">Carregando...</p>
         </div>
       </div>
@@ -58,7 +58,7 @@ export default function SobreNosPage() {
         </Link>
         <div>
           <h1 className="mobile-title text-gray-900 flex items-center">
-            <Heart className="w-6 h-6 mr-2 text-pink-600" />
+            <Heart className="w-6 h-6 mr-2 text-blue-600" />
             Sobre os Anfitriões
           </h1>
           <p className="text-sm text-gray-500">
@@ -79,12 +79,12 @@ export default function SobreNosPage() {
                     <ImageDisplay
                       imageId={owner.photo_id}
                       alt={owner.name}
-                      className="w-32 h-32 object-cover rounded-full border-4 border-pink-200"
-                      fallbackClassName="w-32 h-32 bg-pink-100 rounded-full border-4 border-pink-200 flex items-center justify-center"
+                      className="w-32 h-32 object-cover rounded-full border-4 border-blue-200"
+                      fallbackClassName="w-32 h-32 bg-blue-100 rounded-full border-4 border-blue-200 flex items-center justify-center"
                     />
                   ) : (
-                    <div className="w-32 h-32 bg-pink-100 rounded-full border-4 border-pink-200 flex items-center justify-center">
-                      <Users className="w-16 h-16 text-pink-400" />
+                    <div className="w-32 h-32 bg-blue-100 rounded-full border-4 border-blue-200 flex items-center justify-center">
+                      <Users className="w-16 h-16 text-blue-400" />
                     </div>
                   )}
                 </div>
@@ -96,7 +96,7 @@ export default function SobreNosPage() {
                   </h2>
                   
                   {owner.relationship && (
-                    <div className="inline-flex items-center space-x-1 bg-pink-100 text-pink-800 px-3 py-1 rounded-full text-sm font-medium mb-3">
+                    <div className="inline-flex items-center space-x-1 bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium mb-3">
                       <Heart className="w-4 h-4" />
                       <span>{owner.relationship}</span>
                     </div>
@@ -120,7 +120,7 @@ export default function SobreNosPage() {
       {/* Botão para voltar */}
       <div className="text-center">
         <Link href="/">
-          <Button className="mobile-button bg-pink-500 hover:bg-pink-600">
+          <Button className="mobile-button bg-blue-500 hover:bg-blue-600">
             <Home className="w-5 h-5 mr-2" />
             Voltar ao Início
           </Button>

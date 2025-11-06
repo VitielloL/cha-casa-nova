@@ -55,9 +55,9 @@ export function ResponsiveButton({
 }: ResponsiveButtonProps) {
   const baseClasses = `
     mobile-button group flex items-center justify-center
-    ${variant === 'primary' ? 'bg-pink-600 hover:bg-pink-700 text-white' : ''}
+    ${variant === 'primary' ? 'bg-blue-600 hover:bg-blue-700 text-white' : ''}
     ${variant === 'secondary' ? 'bg-gray-100 hover:bg-gray-200 text-gray-900' : ''}
-    ${variant === 'outline' ? 'border-2 hover:border-pink-300 hover:bg-pink-50' : ''}
+    ${variant === 'outline' ? 'border-2 hover:border-blue-300 hover:bg-blue-50' : ''}
     transition-all duration-200 ease-in-out
     ${className}
   `

@@ -35,7 +35,7 @@ export default function StoresPage() {
     return (
       <div className="mobile-container">
         <div className="text-center py-8">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-pink-500 mx-auto"></div>
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500 mx-auto"></div>
           <p className="mt-4 text-gray-600">Carregando...</p>
         </div>
       </div>
@@ -66,8 +66,8 @@ export default function StoresPage() {
             <CardContent className="p-6">
               <div className="flex items-start space-x-4">
                 <div className="flex-shrink-0">
-                  <div className="w-12 h-12 bg-pink-100 rounded-lg flex items-center justify-center">
-                    <StoreIcon className="w-6 h-6 text-pink-600" />
+                  <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
+                    <StoreIcon className="w-6 h-6 text-blue-600" />
                   </div>
                 </div>
                 
@@ -90,7 +90,7 @@ export default function StoresPage() {
                       href={store.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center text-sm text-pink-600 hover:text-pink-700 font-medium"
+                      className="inline-flex items-center text-sm text-blue-600 hover:text-blue-700 font-medium"
                     >
                       <ExternalLink className="w-4 h-4 mr-1" />
                       Visitar loja online

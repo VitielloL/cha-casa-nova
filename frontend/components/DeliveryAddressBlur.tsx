@@ -26,7 +26,7 @@ export default function DeliveryAddressBlur() {
       <CardContent className="p-4">
         <div className="flex items-start space-x-3">
           <div className="flex-shrink-0">
-            <MapPin className="w-5 h-5 text-pink-500 mt-0.5" />
+            <MapPin className="w-5 h-5 text-blue-500 mt-0.5" />
           </div>
           <div className="flex-1">
             <h3 className="font-semibold text-gray-900 mb-2">

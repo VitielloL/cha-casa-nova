@@ -158,7 +158,7 @@ function ProgressBars() {
     <Card className="mobile-card mb-6">
       <CardHeader>
         <CardTitle className="mobile-subtitle text-center flex items-center justify-center">
-          <Gift className="w-6 h-6 mr-2 text-pink-500" />
+          <Gift className="w-6 h-6 mr-2 text-blue-500" />
           Progresso da Lista de Presentes
         </CardTitle>
       </CardHeader>

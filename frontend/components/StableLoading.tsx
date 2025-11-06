@@ -16,7 +16,7 @@ export default function StableLoading({
   children, 
   fallback = (
     <div className="flex flex-col items-center justify-center py-8">
-      <Loader2 className="w-8 h-8 text-pink-500 animate-spin mb-2" />
+      <Loader2 className="w-8 h-8 text-blue-500 animate-spin mb-2" />
       <p className="text-sm text-gray-600">Carregando...</p>
     </div>
   )

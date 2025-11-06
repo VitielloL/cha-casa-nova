@@ -53,14 +53,14 @@ export default function ItensSurpresaPage() {
   }
 
   const getItemTypeColor = (type: string) => {
-    return type === 'principal' ? 'bg-pink-100 text-pink-800' : 'bg-purple-100 text-purple-800'
+    return type === 'principal' ? 'bg-blue-100 text-blue-800' : 'bg-purple-100 text-purple-800'
   }
 
   if (loading) {
     return (
       <div className="mobile-container">
         <div className="text-center py-8">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-pink-500 mx-auto"></div>
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500 mx-auto"></div>
           <p className="mt-4 text-gray-600">Carregando itens surpresa...</p>
         </div>
       </div>
@@ -78,7 +78,7 @@ export default function ItensSurpresaPage() {
         </Link>
         <div>
           <h1 className="mobile-title text-gray-900 flex items-center">
-            <Gift className="w-6 h-6 mr-2 text-pink-600" />
+            <Gift className="w-6 h-6 mr-2 text-blue-600" />
             Itens Surpresa
           </h1>
           <p className="text-sm text-gray-500">
@@ -91,7 +91,7 @@ export default function ItensSurpresaPage() {
       <div className="grid grid-cols-2 gap-4 mb-6">
         <Card className="mobile-card">
           <CardContent className="p-4 text-center">
-            <div className="text-2xl font-bold text-pink-600">
+            <div className="text-2xl font-bold text-blue-600">
               {items.filter(item => item.item_type === 'principal').length}
             </div>
             <div className="text-sm text-gray-600">Principais</div>
@@ -118,7 +118,7 @@ export default function ItensSurpresaPage() {
                     {item.is_anonymous ? (
                       <EyeOff className="w-5 h-5 text-gray-400" />
                     ) : (
-                      <Gift className="w-5 h-5 text-pink-500" />
+                      <Gift className="w-5 h-5 text-blue-500" />
                     )}
                     <h3 className="font-semibold text-gray-900">
                       {item.is_anonymous ? 'Item Misterioso' : item.name}
@@ -178,7 +178,7 @@ export default function ItensSurpresaPage() {
               Seja o primeiro a enviar um presente especial!
             </p>
             <Link href="/item-surpresa">
-              <Button className="bg-pink-500 hover:bg-pink-600">
+              <Button className="bg-blue-500 hover:bg-blue-600">
                 <Gift className="w-4 h-4 mr-2" />
                 Enviar Item Surpresa
               </Button>
@@ -197,7 +197,7 @@ export default function ItensSurpresaPage() {
             Envie um item surpresa especial para os anfitriões!
           </p>
           <Link href="/item-surpresa">
-            <Button className="bg-pink-500 hover:bg-pink-600">
+            <Button className="bg-blue-500 hover:bg-blue-600">
               <Gift className="w-4 h-4 mr-2" />
               Enviar Meu Item Surpresa
             </Button>

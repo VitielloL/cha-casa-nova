@@ -21,7 +21,7 @@ export default function BlurLoading({ loading, children, className = '' }: BlurL
       {loading && (
         <div className="absolute inset-0 flex items-center justify-center bg-white/80 backdrop-blur-sm rounded-lg">
           <div className="text-center">
-            <Loader2 className="w-8 h-8 text-pink-500 animate-spin mx-auto mb-2" />
+            <Loader2 className="w-8 h-8 text-blue-500 animate-spin mx-auto mb-2" />
             <p className="text-sm text-gray-600">Carregando...</p>
           </div>
         </div>

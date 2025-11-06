@@ -169,7 +169,7 @@ function AdminProdutosMeiosContent() {
     return (
       <div className="mobile-container">
         <div className="text-center py-8">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-pink-500 mx-auto"></div>
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500 mx-auto"></div>
           <p className="mt-4 text-gray-600">Carregando...</p>
         </div>
       </div>
@@ -187,7 +187,7 @@ function AdminProdutosMeiosContent() {
         </Link>
         <div>
           <h1 className="mobile-title text-gray-900 flex items-center">
-            <Package className="w-6 h-6 mr-2 text-pink-600" />
+            <Package className="w-6 h-6 mr-2 text-blue-600" />
             Meios de Compra dos Produtos
           </h1>
           <p className="text-sm text-gray-500">
@@ -208,12 +208,12 @@ function AdminProdutosMeiosContent() {
                 key={product.id}
                 onClick={() => handleProductSelect(product)}
                 variant={selectedProduct?.id === product.id ? "default" : "outline"}
-                className={`w-full justify-start ${selectedProduct?.id === product.id ? 'bg-pink-500' : ''}`}
+                className={`w-full justify-start ${selectedProduct?.id === product.id ? 'bg-blue-500' : ''}`}
               >
                 <Package className="w-4 h-4 mr-2" />
                 {product.name}
                 {product.purchase_methods && product.purchase_methods.length > 0 && (
-                  <span className="ml-auto text-xs bg-white text-pink-600 px-2 py-1 rounded-full">
+                  <span className="ml-auto text-xs bg-white text-blue-600 px-2 py-1 rounded-full">
                     {product.purchase_methods.length}
                   </span>
                 )}
@@ -233,7 +233,7 @@ function AdminProdutosMeiosContent() {
                 <Button
                   onClick={() => setShowForm(true)}
                   size="sm"
-                  className="bg-pink-500 hover:bg-pink-600"
+                  className="bg-blue-500 hover:bg-blue-600"
                 >
                   <Plus className="w-4 h-4 mr-1" />
                   Adicionar
@@ -288,7 +288,7 @@ function AdminProdutosMeiosContent() {
                   </p>
                   <Button
                     onClick={() => setShowForm(true)}
-                    className="bg-pink-500 hover:bg-pink-600"
+                    className="bg-blue-500 hover:bg-blue-600"
                   >
                     <Plus className="w-4 h-4 mr-2" />
                     Adicionar Primeiro Meio
@@ -391,7 +391,7 @@ function AdminProdutosMeiosContent() {
                     <option value="red">Vermelho</option>
                     <option value="yellow">Amarelo</option>
                     <option value="green">Verde</option>
-                    <option value="pink">Rosa</option>
+                    <option value="blue">Rosa</option>
                     <option value="gray">Cinza</option>
                   </select>
                 </div>
@@ -421,7 +421,7 @@ function AdminProdutosMeiosContent() {
               </div>
 
               <div className="flex space-x-2">
-                <Button type="submit" className="bg-pink-500 hover:bg-pink-600">
+                <Button type="submit" className="bg-blue-500 hover:bg-blue-600">
                   {editingMethod ? 'Atualizar' : 'Adicionar'}
                 </Button>
                 <Button

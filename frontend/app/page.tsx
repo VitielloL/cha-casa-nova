@@ -41,8 +41,8 @@ export default function HomePage() {
     <div className="mobile-container">
       {/* Header */}
       <div className="text-center mb-8 lg:mb-12">
-        <div className="inline-flex items-center justify-center w-16 h-16 lg:w-20 lg:h-20 bg-pink-100 rounded-full mb-4 lg:mb-6">
-          <Home className="w-8 h-8 lg:w-10 lg:h-10 text-pink-600" />
+        <div className="inline-flex items-center justify-center w-16 h-16 lg:w-20 lg:h-20 bg-blue-100 rounded-full mb-4 lg:mb-6">
+          <Home className="w-8 h-8 lg:w-10 lg:h-10 text-blue-600" />
         </div>
         <h1 className="mobile-title text-gray-900 mb-2 lg:mb-4">Lista de Presentes</h1>
         <p className="mobile-text text-gray-600 max-w-2xl mx-auto">
@@ -54,7 +54,7 @@ export default function HomePage() {
       <ResponsiveGrid className="mb-8">
         {loading ? (
           <div className="col-span-full text-center py-8">
-            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-pink-500 mx-auto mb-4"></div>
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500 mx-auto mb-4"></div>
             <p className="text-gray-600">Carregando categorias...</p>
           </div>
         ) : (categories?.length ?? 0) > 0 ? (
@@ -74,7 +74,7 @@ export default function HomePage() {
                       Clique para ver os produtos
                     </p>
                   </div>
-                  <ShoppingBag className="w-6 h-6 text-pink-500" />
+                  <ShoppingBag className="w-6 h-6 text-blue-500" />
                 </CardContent>
               </Card>
             ) : (
@@ -89,7 +89,7 @@ export default function HomePage() {
                         Clique para ver os produtos
                       </p>
                     </div>
-                    <ShoppingBag className="w-6 h-6 text-pink-500" />
+                    <ShoppingBag className="w-6 h-6 text-blue-500" />
                   </CardContent>
                 </Card>
               </Link>
@@ -165,7 +165,7 @@ export default function HomePage() {
           href="/sobre-nos" 
           variant="outline"
           icon={<Heart className="w-5 h-5 lg:w-6 lg:h-6" />}
-          className="hover:bg-pink-50 hover:border-pink-200 group-hover:text-pink-600"
+          className="hover:bg-blue-50 hover:border-blue-200 group-hover:text-blue-600"
         >
           Sobre Nós
         </ResponsiveButton>

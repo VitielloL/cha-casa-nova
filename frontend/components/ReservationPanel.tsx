@@ -67,7 +67,7 @@ export default function ReservationPanel() {
         {/* Botão principal */}
         <Button
           onClick={() => setIsExpanded(!isExpanded)}
-          className="w-12 h-12 rounded-full bg-pink-500 hover:bg-pink-600 text-white shadow-lg"
+          className="w-12 h-12 rounded-full bg-blue-500 hover:bg-blue-600 text-white shadow-lg"
         >
           <ShoppingCart className="w-6 h-6" />
         </Button>
@@ -75,12 +75,12 @@ export default function ReservationPanel() {
 
       {/* Painel expandido */}
       {isExpanded && (
-        <Card className="mt-2 w-80 max-h-96 overflow-y-auto shadow-xl border-pink-200">
+        <Card className="mt-2 w-80 max-h-96 overflow-y-auto shadow-xl border-blue-200">
           <CardContent className="p-4">
             {/* Header */}
             <div className="flex items-center justify-between mb-4">
               <h3 className="font-semibold text-gray-800 flex items-center space-x-2">
-                <ShoppingCart className="w-5 h-5 text-pink-500" />
+                <ShoppingCart className="w-5 h-5 text-blue-500" />
                 <span>Minhas Reservas</span>
               </h3>
               <div className="flex items-center space-x-2">

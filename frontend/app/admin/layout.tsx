@@ -111,7 +111,7 @@ function AdminLayoutContent({ children }: AdminLayoutProps) {
                     className={`
                       flex items-center space-x-3 px-3 py-2 rounded-lg text-sm font-medium transition-colors
                       ${active 
-                        ? 'bg-pink-100 text-pink-700 border-r-2 border-pink-500' 
+                        ? 'bg-blue-100 text-blue-700 border-r-2 border-blue-500' 
                         : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900'
                       }
                     `}
@@ -126,8 +126,8 @@ function AdminLayoutContent({ children }: AdminLayoutProps) {
             {/* User Info */}
             <div className="p-4 border-t bg-gray-50 flex-shrink-0">
               <div className="flex items-center space-x-3">
-                <div className="w-8 h-8 bg-pink-100 rounded-full flex items-center justify-center flex-shrink-0">
-                  <Users className="w-4 h-4 text-pink-600" />
+                <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
+                  <Users className="w-4 h-4 text-blue-600" />
                 </div>
                 <div className="flex-1 min-w-0">
                   <p className="text-sm font-medium text-gray-900 truncate">

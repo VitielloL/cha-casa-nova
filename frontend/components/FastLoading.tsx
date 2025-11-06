@@ -22,7 +22,7 @@ const FastLoading = memo(function FastLoading({
 
   return (
     <div className={`flex flex-col items-center justify-center py-4 ${className}`}>
-      <Loader2 className={`${sizeClasses[size]} text-pink-500 animate-spin mb-2`} />
+      <Loader2 className={`${sizeClasses[size]} text-blue-500 animate-spin mb-2`} />
       {text && <p className="text-sm text-gray-600">{text}</p>}
     </div>
   )

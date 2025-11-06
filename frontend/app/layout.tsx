@@ -35,7 +35,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <ErrorBoundary>
           <AuthProvider>
-            <div className="min-h-screen bg-gradient-to-br from-pink-50 to-purple-50">
+            <div className="min-h-screen bg-gradient-to-br from-blue-50 to-purple-50">
               <div className="min-h-screen flex flex-col">
                 <main className="flex-1">
                   <RoutePrefetcher />

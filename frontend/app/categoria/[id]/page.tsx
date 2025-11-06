@@ -134,7 +134,7 @@ export default function CategoryPage() {
     return (
       <div className="mobile-container">
         <div className="text-center py-8">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-pink-500 mx-auto"></div>
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500 mx-auto"></div>
           <p className="mt-4 text-gray-600">Carregando...</p>
         </div>
       </div>
@@ -225,7 +225,7 @@ export default function CategoryPage() {
                             href={product.store_link}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center text-sm text-pink-600 hover:text-pink-700"
+                            className="inline-flex items-center text-sm text-blue-600 hover:text-blue-700"
                           >
                             Ver na loja
                             <ExternalLink className="w-3 h-3 ml-1" />
@@ -251,7 +251,7 @@ export default function CategoryPage() {
                   {canReserve(product) ? (
                     <Button
                       onClick={() => handleReserve(product)}
-                      className="mobile-button w-full bg-pink-500 hover:bg-pink-600"
+                      className="mobile-button w-full bg-blue-500 hover:bg-blue-600"
                     >
                       <ShoppingCart className="w-5 h-5 mr-2" />
                       {product.reservation_status === 'cancelled' ? 'Reservar Novamente' : 'Reservar'}

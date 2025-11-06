@@ -227,7 +227,7 @@ export default function ReservationModal({ product, open, onOpenChange, onSucces
             </h3>
             
             {/* Informações do produto */}
-            <div className="p-3 bg-pink-50 rounded-lg mb-3">
+            <div className="p-3 bg-blue-50 rounded-lg mb-3">
               <p className="text-sm text-gray-700 mb-2">
                 <strong>Produto:</strong> {product.name}
               </p>
@@ -312,7 +312,7 @@ export default function ReservationModal({ product, open, onOpenChange, onSucces
                     href={product.store_link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-block bg-pink-500 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-pink-600 transition-colors"
+                    className="inline-block bg-blue-500 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-blue-600 transition-colors"
                   >
                     🌐 Ver na Loja Online
                   </a>
@@ -419,8 +419,8 @@ export default function ReservationModal({ product, open, onOpenChange, onSucces
           )}
 
           {/* Campo de Mensagem Carinhosa */}
-          <div className="p-3 bg-pink-50 rounded-lg border border-pink-200">
-            <Label htmlFor="message" className="flex items-center space-x-2 text-pink-800 font-medium text-sm">
+          <div className="p-3 bg-blue-50 rounded-lg border border-blue-200">
+            <Label htmlFor="message" className="flex items-center space-x-2 text-blue-800 font-medium text-sm">
               <span>💝</span>
               <span>Mensagem Carinhosa (opcional)</span>
             </Label>
@@ -429,11 +429,11 @@ export default function ReservationModal({ product, open, onOpenChange, onSucces
               value={message}
               onChange={(e) => setMessage(e.target.value)}
               placeholder="Deixe uma mensagem fofa! 💕"
-              className="mt-2 w-full p-2 text-sm border border-pink-200 rounded-lg resize-none focus:ring-2 focus:ring-pink-500 focus:border-pink-500"
+              className="mt-2 w-full p-2 text-sm border border-blue-200 rounded-lg resize-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
               rows={2}
               maxLength={500}
             />
-            <p className="text-xs text-pink-600 mt-1">
+            <p className="text-xs text-blue-600 mt-1">
               {message.length}/500
             </p>
           </div>
@@ -472,7 +472,7 @@ export default function ReservationModal({ product, open, onOpenChange, onSucces
             <Button
               type="submit"
               disabled={loading || (!isAnonymous && (!name.trim() || !contact.trim() || !contactValid))}
-              className="mobile-button w-full bg-pink-500 hover:bg-pink-600"
+              className="mobile-button w-full bg-blue-500 hover:bg-blue-600"
             >
               {loading ? (
                 <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></div>

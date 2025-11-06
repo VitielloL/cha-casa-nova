@@ -71,7 +71,7 @@ export default function ReservarItemComumPage() {
 
   if (success) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-pink-50 to-purple-50 py-8 px-4">
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-purple-50 py-8 px-4">
         <div className="max-w-md mx-auto">
           <Card className="mobile-card">
             <CardContent className="text-center py-8">
@@ -107,7 +107,7 @@ export default function ReservarItemComumPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-pink-50 to-purple-50 py-8 px-4">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-purple-50 py-8 px-4">
       <div className="max-w-md mx-auto">
         <div className="mb-6">
           <Link href="/">
@@ -231,7 +231,7 @@ export default function ReservarItemComumPage() {
                 <Button
                   type="submit"
                   disabled={loading}
-                  className="mobile-button w-full bg-pink-500 hover:bg-pink-600"
+                  className="mobile-button w-full bg-blue-500 hover:bg-blue-600"
                 >
                   {loading ? (
                     <>

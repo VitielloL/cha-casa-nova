@@ -97,7 +97,7 @@ export default function ItemSurpresaPage() {
         </Link>
         <div>
           <h1 className="mobile-title text-gray-900 flex items-center">
-            <Gift className="w-6 h-6 mr-2 text-pink-600" />
+            <Gift className="w-6 h-6 mr-2 text-blue-600" />
             Enviar Item Surpresa
           </h1>
           <p className="text-sm text-gray-500">
@@ -116,24 +116,24 @@ export default function ItemSurpresaPage() {
         </CardHeader>
         <CardContent className="space-y-3">
           <div className="flex items-start space-x-3">
-            <div className="w-6 h-6 bg-pink-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-              <span className="text-xs font-bold text-pink-600">1</span>
+            <div className="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+              <span className="text-xs font-bold text-blue-600">1</span>
             </div>
             <p className="text-sm text-gray-600">
               <strong>Descreva seu item:</strong> Pode ser específico ou deixar como surpresa total
             </p>
           </div>
           <div className="flex items-start space-x-3">
-            <div className="w-6 h-6 bg-pink-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-              <span className="text-xs font-bold text-pink-600">2</span>
+            <div className="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+              <span className="text-xs font-bold text-blue-600">2</span>
             </div>
             <p className="text-sm text-gray-600">
               <strong>Escolha o anonimato:</strong> Pode aparecer seu nome ou ficar anônimo
             </p>
           </div>
           <div className="flex items-start space-x-3">
-            <div className="w-6 h-6 bg-pink-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-              <span className="text-xs font-bold text-pink-600">3</span>
+            <div className="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+              <span className="text-xs font-bold text-blue-600">3</span>
             </div>
             <p className="text-sm text-gray-600">
               <strong>Os anfitriões veem:</strong> Sua contribuição aparecerá na lista de presentes
@@ -233,7 +233,7 @@ export default function ItemSurpresaPage() {
               <Button
                 type="submit"
                 disabled={loading}
-                className="flex-1 bg-pink-500 hover:bg-pink-600"
+                className="flex-1 bg-blue-500 hover:bg-blue-600"
               >
                 {loading ? (
                   <>

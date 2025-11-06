@@ -61,7 +61,7 @@ function DefaultErrorFallback({ error, resetError }: { error?: Error; resetError
         )}
         <button
           onClick={resetError}
-          className="bg-pink-500 hover:bg-pink-600 text-white px-6 py-2 rounded-lg font-medium"
+          className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-lg font-medium"
         >
           Tentar Novamente
         </button>

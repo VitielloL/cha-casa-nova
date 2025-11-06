@@ -48,7 +48,7 @@ export default function DetectiveCard({ productName, title, message, onReveal, o
   }
 
   return (
-    <Card className="mobile-card border-purple-200 bg-gradient-to-br from-purple-50 to-pink-50">
+    <Card className="mobile-card border-purple-200 bg-gradient-to-br from-purple-50 to-blue-50">
       <CardContent className="p-4">
         <div className="text-center">
           {/* Ícone do detetive */}
@@ -75,7 +75,7 @@ export default function DetectiveCard({ productName, title, message, onReveal, o
           <div className="mb-4">
             <div className="w-full bg-gray-200 rounded-full h-2">
               <div 
-                className="bg-gradient-to-r from-purple-500 to-pink-500 h-2 rounded-full transition-all duration-500"
+                className="bg-gradient-to-r from-purple-500 to-blue-500 h-2 rounded-full transition-all duration-500"
                 style={{ width: `${(investigationLevel / 3) * 100}%` }}
               ></div>
             </div>

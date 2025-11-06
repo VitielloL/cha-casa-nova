@@ -113,7 +113,7 @@ function AdminDonosContent() {
     return (
       <div className="mobile-container">
         <div className="text-center py-8">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-pink-500 mx-auto"></div>
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500 mx-auto"></div>
           <p className="mt-4 text-gray-600">Carregando...</p>
         </div>
       </div>
@@ -132,7 +132,7 @@ function AdminDonosContent() {
           </Link>
           <div>
             <h1 className="mobile-title text-gray-900 flex items-center">
-              <Users className="w-6 h-6 mr-2 text-pink-600" />
+              <Users className="w-6 h-6 mr-2 text-blue-600" />
               Anfitriões da Festa
             </h1>
             <p className="text-sm text-gray-500">
@@ -143,7 +143,7 @@ function AdminDonosContent() {
         
         <Button
           onClick={() => setShowForm(true)}
-          className="bg-pink-500 hover:bg-pink-600"
+          className="bg-blue-500 hover:bg-blue-600"
         >
           <Plus className="w-4 h-4 mr-2" />
           Adicionar
@@ -227,7 +227,7 @@ function AdminDonosContent() {
               </div>
 
               <div className="flex space-x-2">
-                <Button type="submit" className="bg-pink-500 hover:bg-pink-600">
+                <Button type="submit" className="bg-blue-500 hover:bg-blue-600">
                   {editingOwner ? 'Atualizar' : 'Adicionar'}
                 </Button>
                 <Button
@@ -262,8 +262,8 @@ function AdminDonosContent() {
                       className="w-16 h-16 object-cover rounded-full"
                     />
                   ) : (
-                    <div className="w-16 h-16 bg-pink-100 rounded-full flex items-center justify-center">
-                      <Users className="w-8 h-8 text-pink-400" />
+                    <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center">
+                      <Users className="w-8 h-8 text-blue-400" />
                     </div>
                   )}
                 </div>
@@ -275,8 +275,8 @@ function AdminDonosContent() {
                   </h3>
                   {owner.relationship && (
                     <div className="flex items-center space-x-1 mb-2">
-                      <Heart className="w-4 h-4 text-pink-500" />
-                      <span className="text-sm text-pink-600">{owner.relationship}</span>
+                      <Heart className="w-4 h-4 text-blue-500" />
+                      <span className="text-sm text-blue-600">{owner.relationship}</span>
                     </div>
                   )}
                   {owner.bio && (
@@ -322,7 +322,7 @@ function AdminDonosContent() {
             </p>
             <Button
               onClick={() => setShowForm(true)}
-              className="bg-pink-500 hover:bg-pink-600"
+              className="bg-blue-500 hover:bg-blue-600"
             >
               <Plus className="w-4 h-4 mr-2" />
               Adicionar Primeiro Dono

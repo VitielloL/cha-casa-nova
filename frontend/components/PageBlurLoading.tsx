@@ -38,8 +38,8 @@ export default function PageBlurLoading({
       {isLoading && (
         <div className="fixed inset-0 bg-white/90 backdrop-blur-sm flex items-center justify-center z-50">
           <div className="text-center">
-            <div className="inline-flex items-center justify-center w-16 h-16 bg-pink-100 rounded-full mb-4">
-              <Loader2 className="w-8 h-8 text-pink-500 animate-spin" />
+            <div className="inline-flex items-center justify-center w-16 h-16 bg-blue-100 rounded-full mb-4">
+              <Loader2 className="w-8 h-8 text-blue-500 animate-spin" />
             </div>
             <h2 className="text-xl font-semibold text-gray-900 mb-2">
               Lista de Presentes
